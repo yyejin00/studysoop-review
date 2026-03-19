@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 백엔드 마이그레이션
+- 마이그레이션 이전 : `route`,`schema`,`server`,`repository` 파일로 관리.
+- 마이그레이션 이후 : `controller`, `service`, `repository`, `provider` 파일로 관리.
 
-## Getting Started
+| OOP 교재 개념 | 이전 학습 맥락 | 이번 코드에서의 구현 위치 |
+| --- | --- | --- |
+| 추상화 | 문제에 필요한 정보만 노출 | Controller는 HTTP 입출력만, Service는 도메인 규칙만 담당 |
+| 캡슐화 | `#private`로 내부 상태 보호 | `#userRepository`, `#tokenProvider` 등 의존성 은닉 |
+| 상속 | 공통 기능을 부모에 모으고 자식이 재사용 | `BaseController`를 공통 부모로 사용 |
+| 다형성 | 동일한 호출, 다른 구현 | `routes()` 오버라이딩 |
+| 단순 팩토리/전략 | 생성/행동을 외부로 분리 | DI 컨테이너에서 객체 생성과 조합을 일괄 관리 |
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 마이그레이션으로 기능 분리 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| 구분 | `feature-based` | `layered-architecture` |
+| --- | --- | --- |
+| 진입 구조 | `server.js` 중심 | `main.js` + `App` + `Controller` |
+| 인증 처리 | `auth.routes.js` 내부 혼재 | `AuthController` + `AuthService` + `AuthMiddleware` |
+| 비밀번호/JWT/쿠키 | `utils` 함수 집합 | `providers` 클래스 집합 |
+| DB 접근 | plain object repository | 클래스 repository + 생성자 주입 |
+| 의존성 조립 | 파일 내부 import + 직접 생성 | Awilix 컨테이너 조립 |
