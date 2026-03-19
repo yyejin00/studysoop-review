@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev:web": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prisma:migrate": "dotenv -e ./back/env/.env.development -- npx prisma migrate dev --schema ./back/prisma/schema.prisma",
+    "prisma:studio": "dotenv -e ./back/env/.env.development -- npx prisma studio",
+    "prisma:generate": "dotenv -e ./back/env/.env.development -- npx prisma generate",
+    "seed": "node --env-file=./back/env/.env.development scripts/seed.js",
+    "dev:api": "nodemon --env-file=./back/env/.env.development src/server.js",
+    "prod": "node --env-file=/env/.env.production src/server.js"
+  },
+    "prisma": {
+    "schema": "back/prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.5.0",

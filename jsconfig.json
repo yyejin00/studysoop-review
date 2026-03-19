@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@back/*": ["./back/src/*"]
     }
-  }
+  },
+  "include": ["./generated/", "./src/"]
 }
