@@ -20,3 +20,38 @@
 | 비밀번호/JWT/쿠키 | `utils` 함수 집합 | `providers` 클래스 집합 |
 | DB 접근 | plain object repository | 클래스 repository + 생성자 주입 |
 | 의존성 조립 | 파일 내부 import + 직접 생성 | Awilix 컨테이너 조립 |
+
+## feature-based vs Layered
+#### Feature-based: server.js (모든 것이 하나에 섞임)
+```js
+
+import express from 'express';
+import router from './routes/index.js'; // 직접 참조 (강한 결합)
+
+const app = express();
+app.use(express.json());
+app.get('/health', (req, res) => res.json({ message: 'OK' })); // 로직 혼재
+app.use('/', router);
+app.listen(5001); // 직접 실행 (제어권 가짐)
+```
+
+####  Layered: App class (전달받은 부품을 조립만 함)
+```js
+
+export class App {
+  constructor(controller, authMiddleware) { // ⭐️ 의존성 주입 (IoC/DI)
+    this.app = express();
+    this.middleware(authMiddleware);
+    this.routes(controller);
+  }
+
+  routes(controller) {
+    // ⭐️ 다형성: 어떤 컨트롤러든 routes()만 있으면 작동함
+    this.app.use("/api", controller.routes()); 
+  }
+
+  listen(port) { // 실행은 명령을 받을 때만 수행
+    return this.app.listen(port);
+  }
+}
+```
