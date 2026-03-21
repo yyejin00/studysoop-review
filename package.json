@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "main": "./back/src/main.js",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev:web": "next dev",
     "build": "next build",
