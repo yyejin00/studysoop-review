@@ -1,0 +1,23 @@
+// .container {
+//   height: 100px;
+//   display: flex;
+//   align-items: center;
+//   background-color: var(--color-background);
+// }
+
+// .inner {
+//   width: 100%;
+//   max-width: 1440px;
+//   margin: 0 auto;
+//   align-items: center;
+//   padding: 0 var(--page-gutter);
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+
+// .logo {
+//   height: 60px;
+//   width: auto;
+//   display: block;
+// }

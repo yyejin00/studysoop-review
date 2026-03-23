@@ -1,0 +1,77 @@
+// .button {
+//   font-family: var(--font-button);
+//   display: inline-flex;
+//   justify-content: center;
+//   align-items: center;
+//   border-radius: 16px;
+//   border: none;
+//   cursor: pointer;
+//   font-size: 18px;
+//   font-weight: 600;
+//   padding: 10px;
+//   user-select: none;
+//   text-shadow: 0 -3px 0 rgba(0, 0, 0, 0.25);
+//   /* box-shadow: 0 6px 0 #578246; */
+//   transition:
+//     box-shadow 0.15s ease,
+//     transform 0.15s ease;
+// }
+
+// .button:active {
+//   transform: translateY(2px);
+//   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+//   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+// }
+
+// .sm {
+//   height: 36px;
+//   font-size: var(--font-size-sm);
+//   padding: 0 var(--padding-sm);
+// }
+
+// .md {
+//   width: 252px;
+//   height: 58px;
+// }
+
+// .lg {
+//   width: 100%;
+//   height: 58px;
+//   padding: 0 var(--padding-lg);
+// }
+
+// .fullWidth {
+//   width: 100%;
+// }
+
+// .primary {
+//   background-color: var(--color-primary);
+//   color: var(--color-white);
+// }
+
+// .secondary {
+//   background-color: var(--color-text-primary);
+//   color: var(--color-white);
+// }
+
+// .disabled {
+//   opacity: 0.5;
+//   cursor: not-allowed;
+// }
+
+// .button:not(:disabled):hover {
+//   filter: brightness(1.03);
+// }
+
+// .button:not(:disabled):active {
+//   transform: translateY(1px);
+//   filter: brightness(0.98);
+// }
+
+// .disabled,
+// .button:disabled {
+//   opacity: 0.55;
+//   cursor: not-allowed;
+//   transform: none;
+//   filter: none;
+// }
